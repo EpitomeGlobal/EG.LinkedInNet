@@ -1,0 +1,19 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3371c78b_002Dcf5f_002D4150_002D85e2_002Dd8ab55b8e633/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Session #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;And&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::6B8B6439-420D-4959-8604-888B97E46432::net6.0::EG.LinkedInNet.Test.Tests.Test1&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+    &lt;Project Location="D:\Work\cxs\EG.LinkedInNet\tests\EG.LinkedInNet.Test" Presentation="&amp;lt;tests&amp;gt;\&amp;lt;EG.LinkedInNet.Test&amp;gt;" /&gt;&#xD;
+    &lt;Namespace&gt;EG.LinkedInNet.Test&lt;/Namespace&gt;&#xD;
+  &lt;/And&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9fbf8689_002D4be2_002D4bba_002Da70f_002D732f47392b01/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;And&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::6B8B6439-420D-4959-8604-888B97E46432::net6.0::EG.LinkedInNet.Test.Tests.Test1&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+    &lt;Project Location="D:\Work\cxs\EG.LinkedInNet\tests\EG.LinkedInNet.Test" Presentation="&amp;lt;tests&amp;gt;\&amp;lt;EG.LinkedInNet.Test&amp;gt;" /&gt;&#xD;
+    &lt;Namespace&gt;EG.LinkedInNet.Test&lt;/Namespace&gt;&#xD;
+  &lt;/And&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
