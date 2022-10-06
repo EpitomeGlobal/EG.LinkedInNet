@@ -17,20 +17,14 @@ public class Tests
             {
             });
     }
-    protected record WrappedResponse<T>
-    {
-        public object paging { get; init; }
-        public T elements { get; init; }
-
-    }
 
     [Test]
     public void DeserializeClassification()
     {
         var json = File.ReadAllText("classification.json");
-        var test = JsonConvert.DeserializeObject<WrappedResponse<IList<Classification>>>(json);
+        var test = JsonConvert.DeserializeObject<LinkedInResponse<Classification>>(json);
         Assert.IsNotNull(test);
-        Assert.True(test.elements.Count == 38);
+        Assert.True(test.Elements.Count == 38);
 
     }
 
@@ -38,9 +32,9 @@ public class Tests
     public void DeserializeAsset()
     {
         var json = File.ReadAllText("asset.json");
-        var test = JsonConvert.DeserializeObject<WrappedResponse<IList<LearningAsset>>>(json);
+        var test = JsonConvert.DeserializeObject<LinkedInResponse<LearningAsset>>(json);
         Assert.IsNotNull(test);
-        Assert.True(test.elements.Count == 20);
+        Assert.True(test.Elements.Count == 20);
     }
 
     [Test]
@@ -51,7 +45,7 @@ public class Tests
         //client.ReadResponseAsString = true;
         var result = await client.GetClassifications("keyword", "business", "US", "en");
 
-        Assert.True(result.Any());
+        Assert.True(result.Elements.Any());
     }
 
     [Test]
@@ -71,6 +65,6 @@ public class Tests
         };
         var result = await client.GetLearningAssets(request);
 
-        Assert.True(result.Any());
+        Assert.True(result.Elements.Any());
     }
 }

@@ -25,7 +25,7 @@ public class LinkedInClient
     /// </summary>
     private HttpClient Client { get; }
 
-    public async Task<IList<Classification>> GetClassifications(
+    public async Task<LinkedInResponse<Classification>> GetClassifications(
         string query,
         string keyword,
         string country,
@@ -54,7 +54,7 @@ public class LinkedInClient
             var status = (int)response.StatusCode;
             if (status == 200)
             {
-                var objectResponse = await this.ReadObjectResponseAsync<IList<Classification>>(response, headers, cancellationToken).ConfigureAwait(false);
+                var objectResponse = await this.ReadObjectResponseAsync<Classification>(response, headers, cancellationToken).ConfigureAwait(false);
                 if (objectResponse.Object == null)
                 {
                     throw new ApiException("Response was null which was not expected.", status, objectResponse.Text, headers, null);
@@ -73,7 +73,7 @@ public class LinkedInClient
         }
     }
 
-    public async Task<IList<LearningAsset>> GetLearningAssets(LearningAssetRequest request, CancellationToken cancellationToken = default)
+    public async Task<LinkedInResponse<LearningAsset>> GetLearningAssets(LearningAssetRequest request, CancellationToken cancellationToken = default)
     {
         using var requestMessage = new HttpRequestMessage();
         var urlBuilder = new System.Text.StringBuilder();
@@ -119,7 +119,7 @@ public class LinkedInClient
             var status = (int)response.StatusCode;
             if (status == 200)
             {
-                var objectResponse = await this.ReadObjectResponseAsync<IList<LearningAsset>>(response, headers, cancellationToken).ConfigureAwait(false);
+                var objectResponse = await this.ReadObjectResponseAsync<LearningAsset>(response, headers, cancellationToken).ConfigureAwait(false);
                 if (objectResponse.Object == null)
                 {
                     throw new ApiException("Response was null which was not expected.", status, objectResponse.Text, headers, null);
@@ -151,23 +151,22 @@ public class LinkedInClient
         public string Text { get; }
     }
 
-    protected record WrappedResponse<T>(T elements);
 
-    protected virtual async Task<ObjectResponseResult<T>> ReadObjectResponseAsync<T>(
+    protected virtual async Task<ObjectResponseResult<LinkedInResponse<T>>> ReadObjectResponseAsync<T>(
         HttpResponseMessage response,
         IReadOnlyDictionary<string, IEnumerable<string>> headers,
         CancellationToken cancellationToken)
     {
         if (response == null || response.Content == null)
         {
-            return new ObjectResponseResult<T>(default(T), string.Empty);
+            return new ObjectResponseResult<LinkedInResponse<T>>(default, string.Empty);
         }
 
         var responseText = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
         try
         {
-            var typedBody = JsonConvert.DeserializeObject<WrappedResponse<T>>(responseText);
-            return new ObjectResponseResult<T>(typedBody.elements, responseText);
+            var typedBody = JsonConvert.DeserializeObject<LinkedInResponse<T>>(responseText);
+            return new ObjectResponseResult<LinkedInResponse<T>>(typedBody, responseText);
         }
         catch (JsonException exception)
         {
