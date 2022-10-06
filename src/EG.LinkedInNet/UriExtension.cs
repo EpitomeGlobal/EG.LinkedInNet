@@ -6,7 +6,7 @@ public static class UriExtension
 {
     public static StringBuilder AddParameter(this StringBuilder builder, string name, object? value)
     {
-        return builder.Append(Uri.EscapeDataString(name) + "=").Append(Uri.EscapeDataString(ConvertToString(value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+        return value is null ? builder : builder.Append(Uri.EscapeDataString(name) + "=").Append(Uri.EscapeDataString(ConvertToString(value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
     }
 
     private static string ConvertToString(object? value, System.Globalization.CultureInfo cultureInfo)
@@ -17,24 +17,7 @@ public static class UriExtension
                 return "";
             case Enum:
             {
-                var name = Enum.GetName(value.GetType(), value);
-                if (name != null)
-                {
-                    var field = System.Reflection.IntrospectionExtensions.GetTypeInfo(value.GetType()).GetDeclaredField(name);
-                    if (field != null)
-                    {
-                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute(field, typeof(System.Runtime.Serialization.EnumMemberAttribute))
-                            as System.Runtime.Serialization.EnumMemberAttribute;
-                        if (attribute != null)
-                        {
-                            return attribute.Value != null ? attribute.Value : name;
-                        }
-                    }
-
-                    var converted = Convert.ToString(Convert.ChangeType(value, Enum.GetUnderlyingType(value.GetType()), cultureInfo));
-                    return converted == null ? string.Empty : converted;
-                }
-
+                return value.ToString();
                 break;
             }
             case bool b:

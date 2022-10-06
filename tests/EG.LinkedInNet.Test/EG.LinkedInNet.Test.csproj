@@ -20,4 +20,11 @@
       <ProjectReference Include="..\..\src\EG.LinkedInNet\EG.LinkedInNet.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="asset.json" />
+      <Content Include="asset.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>

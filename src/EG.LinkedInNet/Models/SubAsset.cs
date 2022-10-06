@@ -1,5 +1,7 @@
 namespace EG.LinkedInNet.Models;
 
+using System.Text.Json.Serialization;
+
 public class SubAsset
 {
     /// <summary>

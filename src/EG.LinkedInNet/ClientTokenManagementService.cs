@@ -1,8 +1,6 @@
 namespace EG.LinkedInNet;
 
-using System.Net;
 using System.Net.Http.Json;
-using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -16,8 +14,14 @@ public class ClientTokenManagementService : IClientTokenManagementService
     private DateTime? expireAt;
     private string token;
 
+    /// <summary>
+    /// Client token constructor.
+    /// </summary>
+    /// <param name="logger">ILogger instance.</param>
+    /// <param name="config">Linked in config.</param>
     public ClientTokenManagementService(ILogger<ClientTokenManagementService> logger, IOptions<LinkedInConfiguration> config)
     {
+        this.token = string.Empty;
         this.logger = logger;
         this.config = config;
     }

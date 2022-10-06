@@ -1,12 +1,14 @@
 namespace EG.LinkedInNet.Models;
 
+using System.Text.Json.Serialization;
+
 public record Locale
 {
     /// <summary>
     /// If present, an uppercase two-letter country code as defined by ISO-3166.
     /// </summary>
     public string? Country { get; init; }
-    
+
     /// <summary>
     /// A lowercase two-letter language code as defined by ISO-639.
     /// </summary>

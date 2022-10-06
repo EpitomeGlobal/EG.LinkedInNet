@@ -5,7 +5,7 @@ public record NamedParty
     /// <summary>
     /// The name of a person or organization, localized if available.
     /// </summary>
-    public string Name { get; init; }
+    public LocaleString Name { get; init; }
 
     /// <summary>
     /// The URN identifying a person or organization.
