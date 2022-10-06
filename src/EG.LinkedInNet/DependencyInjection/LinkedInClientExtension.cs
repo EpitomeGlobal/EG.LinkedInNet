@@ -1,28 +1,17 @@
-using System;
-using EG.LinkedInNet;
-using IdentityModel.Client;
-
 namespace Microsoft.Extensions.DependencyInjection;
+
+using EG.LinkedInNet;
+using Extensions;
 
 public static class LinkedInClientExtension
 {
     public static IServiceCollection AddLinkedInClient(this IServiceCollection services, Action<LinkedInConfiguration> configureOptions)
     {
-        services.AddClientAccessTokenManagement((sp,d) =>
-        {
-            services.Configure(configureOptions);
-            var config = new LinkedInConfiguration();
-            configureOptions.Invoke(config);
-            d.Clients["LinkedInScheme"] = new ClientCredentialsTokenRequest()
-            {
-                ClientId = config.Client,
-                ClientSecret = config.Secret,
-                Address = config.TokenEndpoint,
-            };
-        });
-        
+        services.Configure(configureOptions);
+        services.TryAddSingleton<IClientTokenManagementService, ClientTokenManagementService>();
+        services.TryAddScoped<ClientAccessTokenHandler>();
         services.AddHttpClient<LinkedInClient>()
-            .AddClientAccessTokenHandler("LinkedInScheme");
+            .AddHttpMessageHandler<ClientAccessTokenHandler>();
         return services;
     }
 }

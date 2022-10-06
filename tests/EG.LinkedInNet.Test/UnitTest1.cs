@@ -13,7 +13,6 @@ public class Tests
         services = new ServiceCollection()
             .AddLinkedInClient(a =>
             {
-
             });
     }
 
