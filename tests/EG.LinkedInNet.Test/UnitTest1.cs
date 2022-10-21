@@ -1,8 +1,7 @@
 namespace EG.LinkedInNet.Test;
 
-using Models;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Models;
 using Newtonsoft.Json;
 
 public class Tests
@@ -12,7 +11,7 @@ public class Tests
     [SetUp]
     public void Setup()
     {
-        services = new ServiceCollection()
+        this.services = new ServiceCollection()
             .AddLinkedInClient(a =>
             {
             });
@@ -21,18 +20,17 @@ public class Tests
     [Test]
     public void DeserializeClassification()
     {
-        var json = File.ReadAllText("classification.json");
-        var test = JsonConvert.DeserializeObject<LinkedInResponse<Classification>>(json);
+        string json = File.ReadAllText("classification.json");
+        LinkedInResponse<Classification>? test = JsonConvert.DeserializeObject<LinkedInResponse<Classification>>(json);
         Assert.IsNotNull(test);
         Assert.True(test.Elements.Count == 38);
-
     }
 
     [Test]
     public void DeserializeAsset()
     {
-        var json = File.ReadAllText("asset.json");
-        var test = JsonConvert.DeserializeObject<LinkedInResponse<LearningAsset>>(json);
+        string json = File.ReadAllText("asset.json");
+        LinkedInResponse<LearningAsset>? test = JsonConvert.DeserializeObject<LinkedInResponse<LearningAsset>>(json);
         Assert.IsNotNull(test);
         Assert.True(test.Elements.Count == 20);
     }
@@ -40,10 +38,10 @@ public class Tests
     [Test]
     public async Task TestClassification()
     {
-        var sp = this.services.BuildServiceProvider(true);
-        var client = sp.GetService<LinkedInClient>();
+        ServiceProvider sp = this.services.BuildServiceProvider(true);
+        LinkedInClient? client = sp.GetService<LinkedInClient>();
         //client.ReadResponseAsString = true;
-        var result = await client.GetClassifications("keyword", "business", "US", "en");
+        LinkedInResponse<Classification> result = await client.GetClassifications("keyword", "business", "US", "en");
 
         Assert.True(result.Elements.Any());
     }
@@ -51,19 +49,38 @@ public class Tests
     [Test]
     public async Task TestAsset()
     {
-        var sp = this.services.BuildServiceProvider(true);
-        var client = sp.GetService<LinkedInClient>();
+        ServiceProvider sp = this.services.BuildServiceProvider(true);
+        LinkedInClient? client = sp.GetService<LinkedInClient>();
         //client.ReadResponseAsString = true;
-        var request = new LearningAssetRequest()
+        var request = new LearningAssetRequest
         {
-            Query = "criteria",
             AssetType = new[] { AssetType.COURSE },
-            ExpandDepth = 3,
+            ExpandDepth = 1,
             IncludeRetired = true,
             Start = 0,
-            Count = 20,
+            Count = 20
         };
-        var result = await client.GetLearningAssets(request);
+        LinkedInResponse<LearningAsset> result = await client.GetLearningAssets(request);
+
+        Assert.True(result.Elements.Any());
+    }
+
+    [Test]
+    public async Task TestReport()
+    {
+        ServiceProvider sp = this.services.BuildServiceProvider(true);
+        LinkedInClient? client = sp.GetService<LinkedInClient>();
+        //client.ReadResponseAsString = true;
+        var request = new LearningReportRequest()
+        {
+            //AssetType = AssetType.COURSE,
+            Primary = AggregationCriteria.ACCOUNT,
+            StartedAt = DateTime.UtcNow.Millisecond,
+            LanguageType = Language.ES,
+            Duration = 7,
+            OffsetUnit = TimeOffset.DAY,
+        };
+        LinkedInResponse<LearningReport> result = await client.GetLearningActivityReports(request);
 
         Assert.True(result.Elements.Any());
     }

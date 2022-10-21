@@ -3,31 +3,37 @@ namespace EG.LinkedInNet.Models;
 public enum Country
 {
     /// <summary>
-    /// Brazil,
+    ///     Brazil,
     /// </summary>
     BR,
+
     /// <summary>
-    /// Spain.
+    ///     Spain.
     /// </summary>
     ES,
+
     /// <summary>
-    /// China.
+    ///     China.
     /// </summary>
     CN,
+
     /// <summary>
-    /// Germany.
+    ///     Germany.
     /// </summary>
     DE,
+
     /// <summary>
-    /// France.
+    ///     France.
     /// </summary>
     FR,
+
     /// <summary>
-    /// Japan.
+    ///     Japan.
     /// </summary>
     JP,
+
     /// <summary>
-    /// United states.
+    ///     United states.
     /// </summary>
-    US,
+    US
 }

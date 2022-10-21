@@ -9,17 +9,18 @@ using Microsoft.Extensions.Options;
 /// </summary>
 public class ClientTokenManagementService : IClientTokenManagementService
 {
-    private readonly ILogger<ClientTokenManagementService> logger;
     private readonly IOptions<LinkedInConfiguration> config;
+    private readonly ILogger<ClientTokenManagementService> logger;
     private DateTime? expireAt;
     private string token;
 
     /// <summary>
-    /// Client token constructor.
+    ///     Client token constructor.
     /// </summary>
     /// <param name="logger">ILogger instance.</param>
     /// <param name="config">Linked in config.</param>
-    public ClientTokenManagementService(ILogger<ClientTokenManagementService> logger, IOptions<LinkedInConfiguration> config)
+    public ClientTokenManagementService(ILogger<ClientTokenManagementService> logger,
+        IOptions<LinkedInConfiguration> config)
     {
         this.token = string.Empty;
         this.logger = logger;
@@ -47,7 +48,7 @@ public class ClientTokenManagementService : IClientTokenManagementService
 
         using var client = new HttpClient();
         var uri = new Uri(this.config.Value.TokenEndpoint, UriKind.RelativeOrAbsolute);
-        var content = new FormUrlEncodedContent(new Dictionary<string,string>
+        var content = new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "grant_type", "client_credentials" },
                 { "client_id", this.config.Value.Client },
@@ -55,20 +56,23 @@ public class ClientTokenManagementService : IClientTokenManagementService
             }
         );
 
-        var response = await client.PostAsync(uri, content, cancellationToken).ConfigureAwait(false);
+        HttpResponseMessage response = await client.PostAsync(uri, content, cancellationToken).ConfigureAwait(false);
         if (response.IsSuccessStatusCode)
         {
-            var tokenResponse = await response.Content.ReadFromJsonAsync<TokenResponse>(cancellationToken :cancellationToken);
+            TokenResponse? tokenResponse =
+                await response.Content.ReadFromJsonAsync<TokenResponse>(cancellationToken: cancellationToken);
             if (tokenResponse is null)
             {
                 this.logger.LogDebug("LinkedIn token failed to deserialize");
             }
+
             this.token = tokenResponse!.access_token;
             this.expireAt = DateTime.UtcNow.AddSeconds(tokenResponse.expires_in);
         }
         else
         {
-            var message = await response.Content.ReadFromJsonAsync<ErrorResponse>(cancellationToken :cancellationToken);
+            ErrorResponse? message =
+                await response.Content.ReadFromJsonAsync<ErrorResponse>(cancellationToken: cancellationToken);
             this.logger.LogDebug($"LinkedIn token failed: {message.error}");
             throw new InvalidOperationException(message.error_description);
         }
@@ -77,5 +81,4 @@ public class ClientTokenManagementService : IClientTokenManagementService
     private record TokenResponse(string access_token, int expires_in);
 
     private record ErrorResponse(string error, string error_description);
-
 }

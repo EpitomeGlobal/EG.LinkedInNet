@@ -5,11 +5,6 @@ using Models;
 public record LearningAssetRequest
 {
     /// <summary>
-    ///     The value of this parameter should always be criteria.
-    /// </summary>
-    public string Query { get; init; } = string.Empty;
-
-    /// <summary>
     ///     The types of learning assets to search. The search results will include only learning assets of these types.
     ///     If omitted, the search results will include learning assets of any type. Since this parameter is an array,
     ///     you will need to specify a zero-based index per value.
@@ -62,7 +57,7 @@ public record LearningAssetRequest
     ///     The supported values correspond to the locales "de_DE", "en_US", "es_ES", "fr_FR", "ja_JP", "zh_CN" and "pt_BR".
     ///     Since the locales parameter is an array, you will need to specify a zero-based index per value.
     /// </summary>
-    public Country[]? Languages { get; init; } = { Country.US };
+    public Language[]? Languages { get; init; } = { Language.EN };
 
     /// <summary>
     ///     Boolean that indicates results should be filtered to only include learningAssets the caller is licensed to access.

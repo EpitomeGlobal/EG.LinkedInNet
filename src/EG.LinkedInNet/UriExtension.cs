@@ -1,15 +1,19 @@
 namespace EG.LinkedInNet;
 
+using System.Globalization;
 using System.Text;
 
 public static class UriExtension
 {
     public static StringBuilder AddParameter(this StringBuilder builder, string name, object? value)
     {
-        return value is null ? builder : builder.Append(Uri.EscapeDataString(name) + "=").Append(Uri.EscapeDataString(ConvertToString(value, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+        return value is null
+            ? builder
+            : builder.Append(Uri.EscapeDataString(name) + "=")
+                .Append(Uri.EscapeDataString(ConvertToString(value, CultureInfo.InvariantCulture))).Append("&");
     }
 
-    private static string ConvertToString(object? value, System.Globalization.CultureInfo cultureInfo)
+    private static string ConvertToString(object? value, CultureInfo cultureInfo)
     {
         switch (value)
         {
@@ -28,15 +32,15 @@ public static class UriExtension
             {
                 if (value.GetType().IsArray)
                 {
-                    var array = Enumerable.OfType<object>((Array) value);
-                    return string.Join(",", Enumerable.Select(array, o => ConvertToString(o, cultureInfo)));
+                    IEnumerable<object> array = ((Array)value).OfType<object>();
+                    return string.Join(",", array.Select(o => ConvertToString(o, cultureInfo)));
                 }
 
                 break;
             }
         }
 
-        var result = Convert.ToString(value, cultureInfo);
+        string? result = Convert.ToString(value, cultureInfo);
         return result == null ? "" : result;
     }
 }

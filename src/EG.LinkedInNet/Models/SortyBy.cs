@@ -4,5 +4,5 @@ public enum SortyBy
 {
     POPULARITY,
     RELEVANCE,
-    RECENCY,
+    RECENCY
 }

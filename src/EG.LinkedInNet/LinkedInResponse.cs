@@ -2,7 +2,7 @@ namespace EG.LinkedInNet;
 
 public record LinkedInResponse<T>
 {
-    public PagingType Paging { get; init;  }
+    public PagingType Paging { get; init; }
 
     public IList<T> Elements { get; init; }
 }

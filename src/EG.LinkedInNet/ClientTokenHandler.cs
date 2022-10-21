@@ -45,9 +45,10 @@ public class ClientAccessTokenHandler : DelegatingHandler
     /// <param name="forceRenewal"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual async Task SetTokenAsync(HttpRequestMessage request, bool forceRenewal, CancellationToken cancellationToken)
+    protected virtual async Task SetTokenAsync(HttpRequestMessage request, bool forceRenewal,
+        CancellationToken cancellationToken)
     {
-        var token = await this.tokenManager.GetTokenAsync(forceRenewal, cancellationToken);
+        string token = await this.tokenManager.GetTokenAsync(forceRenewal, cancellationToken);
 
         if (!string.IsNullOrWhiteSpace(token))
         {

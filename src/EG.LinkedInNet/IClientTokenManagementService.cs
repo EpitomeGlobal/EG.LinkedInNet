@@ -3,7 +3,7 @@ namespace EG.LinkedInNet;
 public interface IClientTokenManagementService
 {
     /// <summary>
-    /// Gets the access token.
+    ///     Gets the access token.
     /// </summary>
     /// <param name="forceRenew">Force renew of token.</param>
     /// <param name="cancellationToken">Cancel token.</param>

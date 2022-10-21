@@ -3,15 +3,17 @@ namespace EG.LinkedInNet.Models;
 public enum TimeUnit
 {
     /// <summary>
-    /// 	A second.
+    ///     A second.
     /// </summary>
     SECOND,
+
     /// <summary>
-    /// 	A minute.
+    ///     A minute.
     /// </summary>
     MINUTE,
+
     /// <summary>
-    /// An hour.
+    ///     An hour.
     /// </summary>
-    HOUR	
+    HOUR
 }

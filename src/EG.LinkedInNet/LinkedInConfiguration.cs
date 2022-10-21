@@ -11,15 +11,14 @@ public class LinkedInConfiguration
     ///     Gets or sets api endpoint.
     /// </summary>
     public string ApiEndpoint { get; set; } = "https://api.linkedin.com";
-    
+
     /// <summary>
-    /// Gets or sets oauth client.
+    ///     Gets or sets oauth client.
     /// </summary>
     public string Client { get; set; }
-    
+
     /// <summary>
-    /// Gets or sets oauth secret.
+    ///     Gets or sets oauth secret.
     /// </summary>
     public string Secret { get; set; }
-    
 }
