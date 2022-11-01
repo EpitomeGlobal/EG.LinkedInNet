@@ -71,7 +71,7 @@ public record LearningAssetRequest
     ///     Relevance sorts the learning assets by LinkedIn Learning's relevance algorithm.
     ///     Popularity sorts the learning assets by view count. Recency sorts the learning assets by publish date.
     /// </summary>
-    public SortyBy SortyBy { get; init; } = SortyBy.RELEVANCE;
+    public SortyBy? SortyBy { get; init; }
 
     /// <summary>
     ///     The number of levels in the learning asset hierarchy to include asset details.
