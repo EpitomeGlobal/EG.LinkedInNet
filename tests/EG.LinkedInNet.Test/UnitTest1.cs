@@ -55,13 +55,11 @@ public class Tests
         var request = new LearningAssetRequest
         {
             AssetType = new[] { AssetType.COURSE },
-            ExpandDepth = 1,
-            IncludeRetired = true,
+            IncludeRetired = false,
             Start = 0,
             Count = 20
         };
         LinkedInResponse<LearningAsset> result = await client.GetLearningAssets(request);
-
         Assert.True(result.Elements.Any());
     }
 

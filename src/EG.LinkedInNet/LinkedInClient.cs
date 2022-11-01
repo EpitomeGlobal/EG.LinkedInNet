@@ -147,9 +147,9 @@ public class LinkedInClient
             .AddParameter("q", "criteria")
             .AddParameter("assetFilteringCriteria.keyword", request.Keyword)
             .AddParameter("assetPresentationCriteria.sortBy", request.SortyBy)
-            .AddParameter("assetPresentationCriteria.expandDepth", request.ExpandDepth)
-            .AddParameter("assetPresentationCriteria.includeRetired", request.IncludeRetired)
-            .AddParameter("assetPresentationCriteria.licensedOnly", request.LicensedOnly)
+            .AddParameter("assetRetrievalCriteria.expandDepth", request.ExpandDepth)
+            .AddParameter("assetRetrievalCriteria.includeRetired", request.IncludeRetired)
+            .AddParameter("assetFilteringCriteria.licensedOnly", request.LicensedOnly)
             .AddParameter("assetFilteringCriteria.lastModifiedAfter",
                 request.LastModifiedAfter?.Subtract(DateTime.UnixEpoch).TotalSeconds)
             .AddParameter("start", request.Start)
@@ -167,6 +167,16 @@ public class LinkedInClient
             foreach (var item in request.Classification.Select((value, i) => new { i, value }))
             {
                 urlBuilder.AddParameter($"assetFilteringCriteria.classifications[{item.i}]", item.value);
+            }
+        }
+
+        if (request.Languages is not null)
+        {
+            foreach (var item in request.Languages.Select((value, i) => new { i, value }))
+            {
+                var country = request.Countries[item.i];
+                urlBuilder.AddParameter($"assetFilteringCriteria.locales[{item.i}].language", item.value);
+                urlBuilder.AddParameter($"assetFilteringCriteria.locales[{item.i}].country", country);
             }
         }
 
