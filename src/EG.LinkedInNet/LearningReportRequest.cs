@@ -2,7 +2,7 @@ namespace EG.LinkedInNet;
 
 using Models;
 
-public class LearningReportRequest
+public record LearningReportRequest
 {
     /// <summary>
     /// 	Specifies the beginning time for the range of records to be returned or summarized by the report.
