@@ -89,7 +89,7 @@ public class LinkedInClient
         var urlBuilder = new StringBuilder();
         urlBuilder.Append(this.baseUrl != null ? this.baseUrl.TrimEnd('/') : "").Append("/v2/learningActivityReports?");
         urlBuilder.AddParameter("q", "criteria")
-            .AddParameter("startedAt", request.StartedAt)
+            .AddParameter("startedAt", request.StartedAt.Subtract(DateTime.UnixEpoch).TotalMilliseconds)
             .AddParameter("sortBy.engagementMetricType", request.MetricType)
             .AddParameter("sortBy.engagementMetricQualifier", request.MetricQualifier)
             .AddParameter("sortOrder", request.SortOrder)
@@ -100,7 +100,8 @@ public class LinkedInClient
             .AddParameter("contentSource", request.ContentSource)
             .AddParameter("aggregationCriteria.primary", request.Primary)
             .AddParameter("aggregationCriteria.secondary", request.Secondary)
-            .Append("count=1");
+            .AddParameter("start", request.Start)
+            .AddParameter("count", request.Count);
         requestMessage.RequestUri = new Uri(urlBuilder.ToString(), UriKind.RelativeOrAbsolute);
 
         HttpResponseMessage response = await this.Client
@@ -150,8 +151,7 @@ public class LinkedInClient
             .AddParameter("assetRetrievalCriteria.expandDepth", request.ExpandDepth)
             .AddParameter("assetRetrievalCriteria.includeRetired", request.IncludeRetired)
             .AddParameter("assetFilteringCriteria.licensedOnly", request.LicensedOnly)
-            .AddParameter("assetFilteringCriteria.lastModifiedAfter",
-                request.LastModifiedAfter?.Subtract(DateTime.UnixEpoch).TotalSeconds)
+            .AddParameter("assetFilteringCriteria.lastModifiedAfter", request.LastModifiedAfter?.Subtract(DateTime.UnixEpoch).TotalMilliseconds)
             .AddParameter("start", request.Start)
             .AddParameter("count", request.Count);
         if (request.AssetType is not null)

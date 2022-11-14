@@ -1,0 +1,186 @@
+{
+  "paging": {
+    "start": 0,
+    "count": 1000,
+    "links": [],
+    "total": 1
+  },
+  "elements": [
+    {
+      "latestDataAt": 1668326340000,
+      "learnerDetails": {
+        "entity": {
+          "accountUrn": "urn:li:enterpriseAccount:23252422"
+        }
+      },
+      "activities": [
+        {
+          "engagementType": "LOGINS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "engagementMetricQualifier": "UNIQUE",
+          "engagementValue": 3
+        },
+        {
+          "engagementType": "VIEWS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "engagementMetricQualifier": "UNIQUE",
+          "engagementValue": 2
+        },
+        {
+          "engagementType": "SECONDS_VIEWED",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "VIDEO",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 317
+        },
+        {
+          "engagementType": "VIEWS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "ARTICLE",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "COMPLETIONS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "ARTICLE",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "VIEWS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "AUDIO",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "COMPLETIONS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "AUDIO",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "VIEWS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "BOOK",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "COMPLETIONS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "BOOK",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "VIEWS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "LEARNING_COLLECTION",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "COMPLETIONS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "LEARNING_COLLECTION",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "VIEWS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "COURSE",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 2
+        },
+        {
+          "engagementType": "COMPLETIONS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "COURSE",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "VIEWS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "DOCUMENT",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "COMPLETIONS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "DOCUMENT",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "VIEWS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "EVENT",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "COMPLETIONS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "EVENT",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "VIEWS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "LEARNING_PATH",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "COMPLETIONS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "LEARNING_PATH",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 0
+        },
+        {
+          "engagementType": "VIEWS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "VIDEO",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 3
+        },
+        {
+          "engagementType": "COMPLETIONS",
+          "lastEngagedAt": 1667433600000,
+          "firstEngagedAt": 1667347200000,
+          "assetType": "VIDEO",
+          "engagementMetricQualifier": "TOTAL",
+          "engagementValue": 2
+        }
+      ]
+    }
+  ]
+}

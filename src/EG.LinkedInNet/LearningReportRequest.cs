@@ -6,9 +6,9 @@ public class LearningReportRequest
 {
     /// <summary>
     /// 	Specifies the beginning time for the range of records to be returned or summarized by the report.
-    /// Represented by number of milliseconds since midnight, January 1, 1970 UTC.
+    ///     Represented by number of milliseconds since midnight, January 1, 1970 UTC.
     /// </summary>
-    public long StartedAt { get; set; }
+    public DateTime StartedAt { get; set; }
 
     /// <summary>
     /// An engagement type metric by which the results should be sorted.
@@ -62,4 +62,14 @@ public class LearningReportRequest
     /// The secondary aggregation level for the report.
     /// </summary>
     public AggregationCriteria? Secondary { get; init; }
+
+    /// <summary>
+    ///     The start index of learning report for the page.
+    /// </summary>
+    public long Start { get; init; } = 0;
+
+    /// <summary>
+    ///     The number of learning report to include in the page. The maximum count is 1000 report per page.
+    /// </summary>
+    public long Count { get; init; } = 20;
 }

@@ -27,7 +27,7 @@ public class LearnerDetails
     /// <summary>
     /// LinkedIn Learning specific unique entity identifier.
     /// </summary>
-    public string Entity { get; set; } = string.Empty;
+    public LearnerEntity Entity { get; set; }
 
     /// <summary>
     /// Additional profile attributes provided by the enterprise.

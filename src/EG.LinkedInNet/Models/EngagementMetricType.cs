@@ -3,6 +3,11 @@ namespace EG.LinkedInNet.Models;
 public enum EngagementMetricType
 {
     /// <summary>
+    ///     Login time.
+    /// </summary>
+    LOGINS,
+
+    /// <summary>
     ///     Total number of seconds a content has been viewed by enterprise entities.
     /// </summary>
     SECONDS_VIEWED,

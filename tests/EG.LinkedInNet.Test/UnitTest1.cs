@@ -27,6 +27,16 @@ public class Tests
     }
 
     [Test]
+    public void DeserializeReport()
+    {
+        string json = File.ReadAllText("report.json");
+        LinkedInResponse<LearningReport>? test = JsonConvert.DeserializeObject<LinkedInResponse<LearningReport>>(json);
+        Assert.IsNotNull(test);
+        Assert.True(test.Elements.Count == 1);
+    }
+
+
+    [Test]
     public void DeserializeAsset()
     {
         string json = File.ReadAllText("asset.json");
@@ -71,13 +81,13 @@ public class Tests
         //client.ReadResponseAsString = true;
         var request = new LearningReportRequest()
         {
-            //AssetType = AssetType.COURSE,
-            Primary = AggregationCriteria.ACCOUNT,
-            StartedAt = DateTime.UtcNow.Millisecond,
-            LanguageType = Language.ES,
-            Duration = 7,
             OffsetUnit = TimeOffset.DAY,
+            Duration = 1,
+            ContentSource = ContentSource.LINKEDIN_LEARNING,
+            StartedAt = DateTime.Parse("2 Nov 2022"),
+            Primary = AggregationCriteria.ACCOUNT,
         };
+
         LinkedInResponse<LearningReport> result = await client.GetLearningActivityReports(request);
 
         Assert.True(result.Elements.Any());
