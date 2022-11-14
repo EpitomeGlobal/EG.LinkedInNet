@@ -24,4 +24,9 @@ public class EngagementMetric
     ///     COMPLETIONS this is the time when the content was completed.
     /// </summary>
     public long? LastEngagedAt { get; set; }
+
+    /// <summary>
+    ///     The time when the content was first engaged.
+    /// </summary>
+    public long? FirstEngagedAt { get; set; }
 }
